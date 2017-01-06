@@ -1,13 +1,32 @@
 require 'rails_helper'
 =begin h
-When I send a DELETE request to `/api/v1/items/1`
-I receive a 204 JSON response if the record is successfully deleted
-
 When I send a POST request to `/api/v1/items` with a name, description, and image_url
 I receive a 201 JSON  response if the record is successfully created
 And I receive a JSON response containing the id, name, description, and image_url but not the created_at or updated_atdescribe 'items endpoint' do
 =end
 describe 'items endpoints' do
+  context 'POST to /api/v1/items' do
+    it 'returns json about the item and 201' do
+      data = { item: {
+        name: 'fluffy bunny',
+        description: 'fluffy of course',
+        image_url: 'some image'
+      }}
+
+      post '/api/v1/items', data.to_json
+  
+      result = JSON.parse(response.body)
+
+      expect(response).to have_http_status(201)
+      expect(result).to be_a(Hash)
+      expect(result['name']).to eq('fluffy bunny')
+      expect(result['description']).to eq('fluffy of course')
+      expect(result['image_url']).to eq('some image')
+      expect(result).to_not have_key('created_at')
+      expect(result).to_not have_key('updated_at')
+    end
+  end
+
   context 'GET to /api/v1/items' do
     it 'returns all items' do
       items = create_list(:item, 3)
