@@ -27,7 +27,7 @@ I should see an unordered list of the store hours in the following format:
 =end
 describe 'user' do
   context 'puts zip in search box and submits' do
-    scenario 'they are directed to search path and see store info' do
+    scenario 'they are directed to search path and see store info', :vcr do
       user = User.create(name: 'Frank', email: 'frank@example.com')
 
       visit "/"
