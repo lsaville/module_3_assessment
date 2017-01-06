@@ -18,7 +18,7 @@ describe 'items endpoints' do
       first = response_items.first
       last = response_items.last
 
-      expect(response_status).to eq(200)
+      expect(response).to have_http_status(200)
       expect(response_items).to be_an(Array)
       expect(response_items.count).to eq(3)
       expect(first['name']).to eq(items.first.name)
@@ -42,7 +42,7 @@ describe 'items endpoints' do
 
       result = JSON.parse(response.body)
 
-      expect(response_status).to eq(200)
+      expect(response).to have_http_status(200)
       expect(result).to be_a(Hash)
       expect(result['name']).to eq(item.name)
       expect(result['description']).to eq(item.description)
@@ -56,9 +56,9 @@ describe 'items endpoints' do
     it 'gives a 204' do
       item = create(:item)
 
-      get "/api/v1/items/#{item.id}"
+      delete "/api/v1/items/#{item.id}"
       
-      expect(response_status).to eq(204)
+      expect(response).to have_http_status(204)
     end
   end
 end
