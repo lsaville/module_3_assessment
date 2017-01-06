@@ -1,8 +1,5 @@
 require 'rails_helper'
 =begin h
-When I send a GET request to `/api/v1/items/1`
-I receive a 200 JSON response containing the id, name, description, and image_url but not the created_at or updated_at
-
 When I send a DELETE request to `/api/v1/items/1`
 I receive a 204 JSON response if the record is successfully deleted
 
@@ -21,6 +18,7 @@ describe 'items endpoints' do
       first = response_items.first
       last = response_items.last
 
+      expect(response_status).to eq(200)
       expect(response_items).to be_an(Array)
       expect(response_items.count).to eq(3)
       expect(first['name']).to eq(items.first.name)
@@ -44,12 +42,23 @@ describe 'items endpoints' do
 
       result = JSON.parse(response.body)
 
+      expect(response_status).to eq(200)
       expect(result).to be_a(Hash)
       expect(result['name']).to eq(item.name)
       expect(result['description']).to eq(item.description)
       expect(result['image_url']).to eq(item.image_url)
       expect(result).to_not have_key('created_at')
       expect(result).to_not have_key('updated_at')
+    end
+  end
+
+  context 'DELETE to /api/v1/items/:id' do
+    it 'gives a 204' do
+      item = create(:item)
+
+      get "/api/v1/items/#{item.id}"
+      
+      expect(response_status).to eq(204)
     end
   end
 end
