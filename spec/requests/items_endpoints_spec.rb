@@ -51,7 +51,6 @@ describe 'items endpoints' do
       expect(response_item['image_url']).to eq(item.image_url)
       expect(response_item).to_not have_key('created_at')
       expect(response_item).to_not have_key('updated_at')
-
     end
   end
 end
