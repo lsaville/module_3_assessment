@@ -1,9 +1,5 @@
 require 'rails_helper'
 =begin h
-when I send a GET request to `/api/v1/items`
-I receive a 200 JSON response containing all items
-And each item has an id, name, description, and image_url but not the created_at or updated_at
-
 When I send a GET request to `/api/v1/items/1`
 I receive a 200 JSON response containing the id, name, description, and image_url but not the created_at or updated_at
 
@@ -37,6 +33,25 @@ describe 'items endpoints' do
       expect(last['image_url']).to eq(items.last.image_url)
       expect(last).to_not have_key('created_at')
       expect(last).to_not have_key('updated_at')
+    end
+  end
+
+  context 'GET to /api/v1/items/:id' do
+    it 'returns the specific item' do
+      item = create(:item)
+
+      get "/api/v1/items/#{item.id}"
+
+      response = JSON.parse(response.body)
+      response_item = response.first
+
+      expect(response).to be_an(Array)
+      expect(response_item['name']).to eq(item.name)
+      expect(response_item['description']).to eq(item.description)
+      expect(response_item['image_url']).to eq(item.image_url)
+      expect(response_item).to_not have_key('created_at')
+      expect(response_item).to_not have_key('updated_at')
+
     end
   end
 end
