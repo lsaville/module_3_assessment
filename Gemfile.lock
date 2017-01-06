@@ -49,6 +49,7 @@ GEM
     commonjs (0.2.7)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
+    database_cleaner (1.5.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -191,6 +192,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
+  database_cleaner
   factory_girl_rails
   faker
   faraday
