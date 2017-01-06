@@ -7,7 +7,7 @@ describe BestBuyStore do
         :phone     => '303-270-9189',
         :storeType => 'Mobile',
         :name      => 'Cherry Creek',
-        :city      => 'Denver'
+        :city      => 'Denver',
         :distance  => 3.24
       } 
 
