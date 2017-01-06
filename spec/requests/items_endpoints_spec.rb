@@ -13,7 +13,7 @@ describe 'items endpoints' do
         image_url: 'some image'
       }}
 
-      post '/api/v1/items', data.to_json
+      post '/api/v1/items', data
   
       result = JSON.parse(response.body)
 
