@@ -4,5 +4,6 @@ class Api::V1::ItemsController < ActionController::Base
   end
 
   def show
+    render json: Item.find_by(params[:id])
   end
 end
