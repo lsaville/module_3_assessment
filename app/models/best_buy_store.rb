@@ -1,4 +1,6 @@
 class BestBuyStore
+  attr_reader :phone, :distance, :type, :name, :city
+
   def initialize(data)
     @phone    = data[:phone]
     @distance = data[:distance]
