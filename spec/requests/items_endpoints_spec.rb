@@ -42,15 +42,14 @@ describe 'items endpoints' do
 
       get "/api/v1/items/#{item.id}"
 
-      response = JSON.parse(response.body)
-      response_item = response.first
+      result = JSON.parse(response.body)
 
-      expect(response).to be_an(Array)
-      expect(response_item['name']).to eq(item.name)
-      expect(response_item['description']).to eq(item.description)
-      expect(response_item['image_url']).to eq(item.image_url)
-      expect(response_item).to_not have_key('created_at')
-      expect(response_item).to_not have_key('updated_at')
+      expect(result).to be_a(Hash)
+      expect(result['name']).to eq(item.name)
+      expect(result['description']).to eq(item.description)
+      expect(result['image_url']).to eq(item.image_url)
+      expect(result).to_not have_key('created_at')
+      expect(result).to_not have_key('updated_at')
     end
   end
 end
