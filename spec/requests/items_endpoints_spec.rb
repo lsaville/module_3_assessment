@@ -29,8 +29,14 @@ describe 'items endpoints' do
       expect(response_items.count).to eq(3)
       expect(first['name']).to eq(items.first.name)
       expect(first['description']).to eq(items.first.description)
+      expect(first['image_url']).to eq(items.first.image_url)
+      expect(first).to_not have_key('created_at')
+      expect(first).to_not have_key('updated_at')
       expect(last['name']).to eq(items.last.name)
       expect(last['description']).to eq(items.last.description)
+      expect(last['image_url']).to eq(items.last.image_url)
+      expect(last).to_not have_key('created_at')
+      expect(last).to_not have_key('updated_at')
     end
   end
 end
