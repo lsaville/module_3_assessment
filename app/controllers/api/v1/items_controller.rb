@@ -9,7 +9,10 @@ class Api::V1::ItemsController < ActionController::Base
 
   def destroy
     item = Item.find_by(params[:id])
-    item.delete
-    render nothing: true, status: 204 
+    if item.delete
+      render nothing: true, status: 204 
+    else
+      render nothing: true, status: 400
+    end
   end
 end
