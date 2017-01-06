@@ -1,1 +1,11 @@
 <h1>Nearby Stores</h1>
+
+<% @stores.each do |store| %>
+  <div class="store">
+    <p><%= store.name %></p>
+    <p><%= store.type %></p>
+    <p><%= store.distance %></p>
+    <p><%= store.phone %></p>
+    <p><%= store.city %></p>
+  </div>
+<% end %>
