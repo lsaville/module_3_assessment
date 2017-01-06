@@ -1,9 +1,5 @@
 require 'rails_helper'
-=begin h
-When I send a POST request to `/api/v1/items` with a name, description, and image_url
-I receive a 201 JSON  response if the record is successfully created
-And I receive a JSON response containing the id, name, description, and image_url but not the created_at or updated_atdescribe 'items endpoint' do
-=end
+
 describe 'items endpoints' do
   context 'POST to /api/v1/items' do
     it 'returns json about the item and 201' do
