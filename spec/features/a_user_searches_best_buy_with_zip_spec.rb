@@ -36,8 +36,8 @@ describe 'user' do
 			click_on 'Search'
 
       expect(page).to have_content("Nearby Stores")
-      expect(page).to have_css('.store', count: 15)
-      within('.store', match: :first) do
+      expect(page).to have_css('div.store', count: 16)
+      within('div.store', match: :first) do
         expect(page).to have_content('303-270-9189')
         expect(page).to have_content("Mobile")
         expect(page).to have_content(3.25)
