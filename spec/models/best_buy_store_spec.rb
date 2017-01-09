@@ -1,6 +1,15 @@
 require 'rails_helper'
 
 describe BestBuyStore do
+  context '.get_stores method' do
+    it 'makes a copies of itself from a service call' do
+      stores = BestBuyStore.get_stores('80202')
+
+      expect(stores.count).to eq(15)
+      expect(stores.first).to be_a(BestBuyStore)
+    end
+  end
+
   context 'attributes' do
     it 'has name, city, distance, phone, and type' do
       raw_store_data = {
