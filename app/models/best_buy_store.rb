@@ -10,7 +10,7 @@ class BestBuyStore
   end
 
   def self.get_stores(zip)
-    BestBuyService.new(zip).map do |raw_store|
+    BestBuyService.new(zip).store_finder.map do |raw_store|
       BestBuyStore.new(raw_store)
     end
   end
