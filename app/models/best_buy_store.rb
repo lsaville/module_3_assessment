@@ -8,4 +8,10 @@ class BestBuyStore
     @name     = data[:name]
     @city     = data[:city]
   end
+
+  def self.get_stores(zip)
+    BestBuyService.new(zip).map do |raw_store|
+      BestBuyStore.new(raw_store)
+    end
+  end
 end
