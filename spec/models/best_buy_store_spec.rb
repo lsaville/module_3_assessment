@@ -2,11 +2,13 @@ require 'rails_helper'
 
 describe BestBuyStore do
   context '.get_stores method' do
-    it 'makes a copies of itself from a service call' do
+    it 'makes a copies of itself from a service call', :vcr do
       stores = BestBuyStore.get_stores('80202')
 
-      expect(stores.count).to eq(15)
+      expect(stores.count).to eq(16)
+      expect(stores).to be_an(Array)
       expect(stores.first).to be_a(BestBuyStore)
+      expect(stores.last).to be_a(BestBuyStore)
     end
   end
 
